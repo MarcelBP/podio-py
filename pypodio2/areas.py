@@ -103,6 +103,9 @@ class Item(Area):
     def xlsx(self, app_id, **kwargs):
         return self.transport.GET(url='/item/app/%d/xlsx/' % app_id, **kwargs)
 
+    def count(self, app_id, **kwargs):
+        return self.transport.GET(url='/item/app/%d/count/' % app_id, **kwargs)
+
     def filter_by_view(self, app_id, view_id):
         return self.transport.POST(url="/item/app/{}/filter/{}".format(app_id, view_id))
 
