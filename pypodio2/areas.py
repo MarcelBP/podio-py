@@ -100,7 +100,7 @@ class Item(Area):
         return self.transport.POST(url="/item/app/%d/filter/" % app_id, body=attributes,
                                    type="application/json", **kwargs)
 
-    def revisions(self, app_id, **kwargs):
+    def xlsx(self, app_id, **kwargs):
         return self.transport.GET(url='/item/app/%d/xlsx/' % app_id, **kwargs)
 
     def filter_by_view(self, app_id, view_id):
@@ -109,7 +109,7 @@ class Item(Area):
     def find_all_by_external_id(self, app_id, external_id):
         return self.transport.GET(url='/item/app/%d/v2/?external_id=%r' % (app_id, external_id))
 
-    def xlsx(self, item_id):
+    def revisions(self, item_id):
         return self.transport.GET(url='/item/%d/revision/' % item_id)
 
     def revision_difference(self, item_id, revision_from_id, revision_to_id):
