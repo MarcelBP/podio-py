@@ -140,6 +140,10 @@ class HttpTransport(object):
             body = self._generate_body()  # hack
         response, data = self._http.request(url, self._method, body=body, headers=headers)
 
+        if 'limit' in kwargs:
+            handler = kwargs.get('handler', _handle_xlsx_response)
+            return handler(response, data)
+
         self._attribute_stack = []
         handler = kwargs.get('handler', _handle_response)
         return handler(response, data)
@@ -205,6 +209,8 @@ class HttpTransport(object):
             self._attribute_stack.append(name)
         return self
 
+def _handle_xlsx_response(response, data):
+    return data
 
 def _handle_response(response, data):
     if not data:
